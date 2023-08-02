@@ -1,0 +1,7 @@
+.tableStyles,thead,tbody,th,tr,td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
+}
