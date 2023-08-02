@@ -1,19 +1,31 @@
 import './User-List.css'
 import { Link } from 'react-router-dom'
 import data from '../courses.json'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const UserList = () => {
 
-    const [userData , setUserData] = useState(data)
+    const [userData , setUserData] = useState([])
 
-    const userdataDelete=(id)=>{
+    useEffect(()=>{
+        setUserData(data)
+    },[])
+
+
+    const userdataDelete=(id, index)=>{
            console.log(id)
-           const filterdata = data.filter((values)=>{
-                  return values._id !== id
+        //    const filterdata = data.filter((values)=>{
+        //           return values._id !== id
 
-           })
-           setUserData(filterdata);
+        //    })
+    const filterdatas = [...userData]
+
+        filterdatas.splice(index,1);
+
+        setUserData(filterdatas)
+        
+        
+
     }
     return (
         <div>
@@ -38,7 +50,7 @@ const UserList = () => {
                                 <td>{ value.courseTitle}</td>
                                 <td>{value.courseCategory }</td>
                                 <td>{ value.courseDescription}</td>
-                                <td><button onClick={()=>userdataDelete(value._id)}>Delete</button></td>
+                                <td><button onClick={()=>userdataDelete(value._id, index)}>Delete</button></td>
                             </tr>
                             ))
                       }
